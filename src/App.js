@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { Title } from './components/Title/Title';
 
-function App() {
+const App = () => {
+  const [showEvents, setShowEvents] = useState('true');
+  const [events, setEvents] = useState([
+    { title: 'My birthday', id: 1 },
+    { title: 'Programming session', id: 2 },
+    { title: 'Meeting with sister', id: 3 },
+  ]);
+
+  console.log(showEvents);
+
+  //handleSubmit = (id) => { setEvents }
+  const handleSubmit = (id) => {
+    setEvents((prevEvent) => {
+      return prevEvent.filter((event) => {
+        return id !== event.id;
+      });
+    });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Title />
+      {showEvents && (
+        <div>
+          <button onClick={() => setShowEvents(false)}>hide events</button>
+        </div>
+      )}
+      {!showEvents && (
+        <div>
+          <button onClick={() => setShowEvents(true)}>show events</button>
+        </div>
+      )}
+      {showEvents &&
+        events.map((event, index) => (
+          <div key={event.id}>
+            <h2>
+              {index}-{event.title}
+            </h2>
+            <button onClick={() => handleSubmit(event.id)}>delete event</button>
+          </div>
+        ))}
     </div>
   );
-}
-
+};
 export default App;
