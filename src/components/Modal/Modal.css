@@ -13,3 +13,9 @@
   background: #fff;
   border-radius: 10px;
 }
+
+.modal .sales-button {
+  border: 4px solid 18px;
+  font-size: 18px;
+  text-transform: uppercase;
+}

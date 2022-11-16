@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Title } from './components/Title';
+import { Title } from './components/Title/Title';
 import React from 'react';
 import { Modal } from './components/Modal/Modal';
 import { EventList } from './components/EventList/EventList';
@@ -41,7 +41,7 @@ const App = () => {
       )}
       {showEvents && <EventList handleSubmit={handleSubmit} events={events} />}
       {showModel && (
-        <Modal handleCloseModel={handleCloseM}>
+        <Modal handleCloseModel={handleCloseM} isSalesModal={false}>
           <h2>Black Friday</h2>
           <p>Use the code Lukasz10</p>
         </Modal>
