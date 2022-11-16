@@ -14,8 +14,19 @@ export const NewEventForm = () => {
   //     e.preventDefault();
   //     setTitle(e.target.value);
   //   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const event = {
+      title,
+      date,
+    };
+    console.log(event);
+    resetForm();
+  };
   return (
-    <form className='new-event-form'>
+    <form className='new-event-form' onSubmit={handleSubmit}>
       <label>
         <span>Event title:</span>
         <input
@@ -33,7 +44,6 @@ export const NewEventForm = () => {
         ></input>
       </label>
       <button>Submit</button>
-      <button onClick={resetForm}>reset the form</button>
     </form>
   );
 };
