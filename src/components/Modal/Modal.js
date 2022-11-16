@@ -1,9 +1,8 @@
 import React from 'react';
-
-import './Modal.css';
+import styles from './Modal.module.css';
 export function Modal({ children, handleCloseModel, isSalesModal }) {
   return (
-    <div className='modal-backdrop'>
+    <div className={styles.modal}>
       <div
         className='modal'
         style={{
