@@ -3,6 +3,7 @@ import { Title } from './components/Title/Title';
 import React from 'react';
 import { Modal } from './components/Modal/Modal';
 import { EventList } from './components/EventList/EventList';
+import { NewEventForm } from './components/NewEventForm/NewEventForm';
 const App = () => {
   const [showModel, setShowModel] = useState('false');
   const [showEvents, setShowEvents] = useState('true');
@@ -42,13 +43,12 @@ const App = () => {
       {showEvents && <EventList handleSubmit={handleSubmit} events={events} />}
       {showModel && (
         <Modal handleCloseModel={handleCloseM} isSalesModal={false}>
-          <h2>Black Friday</h2>
-          <p>Use the code Lukasz10</p>
+          <NewEventForm />
         </Modal>
       )}
       <br />
       <>
-        <button onClick={() => setShowModel('true')}>Show modal </button>
+        <button onClick={() => setShowModel(true)}>Show modal </button>
       </>
     </div>
   );
