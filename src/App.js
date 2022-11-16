@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import { Title } from './components/Title/Title';
-
+import { Title } from './components/Title';
+import React from 'react';
+import { Modal } from './components/Modal/Modal';
+import { EventList } from './components/EventList/EventList';
 const App = () => {
+  const [showModel, setShowModel] = useState('false');
   const [showEvents, setShowEvents] = useState('true');
   const [events, setEvents] = useState([
     { title: 'My birthday', id: 1 },
@@ -19,9 +22,13 @@ const App = () => {
       });
     });
   };
+  const handleCloseM = () => {
+    setShowModel(false);
+  };
+  const subtitle = 'All the lastes events in Wroclaw';
   return (
     <div className='App'>
-      <Title />
+      <Title title='Events in my area' subtitle={subtitle} />
       {showEvents && (
         <div>
           <button onClick={() => setShowEvents(false)}>hide events</button>
@@ -32,15 +39,17 @@ const App = () => {
           <button onClick={() => setShowEvents(true)}>show events</button>
         </div>
       )}
-      {showEvents &&
-        events.map((event, index) => (
-          <div key={event.id}>
-            <h2>
-              {index}-{event.title}
-            </h2>
-            <button onClick={() => handleSubmit(event.id)}>delete event</button>
-          </div>
-        ))}
+      {showEvents && <EventList handleSubmit={handleSubmit} events={events} />}
+      {showModel && (
+        <Modal handleCloseModel={handleCloseM}>
+          <h2>Black Friday</h2>
+          <p>Use the code Lukasz10</p>
+        </Modal>
+      )}
+      <br />
+      <>
+        <button onClick={() => setShowModel('true')}>Show modal </button>
+      </>
     </div>
   );
 };
